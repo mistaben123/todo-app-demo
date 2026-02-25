@@ -1,31 +1,39 @@
 :root{
-  --bg:#f7f7fb;
-  --card:#ffffff;
-  --accent:#4a90e2;
-  --muted:#9aa3b2;
+  --bg:#000000;
+  --text:#ffffff;
+  --accent:#6366f1;
+  --muted:#888888;
+  --border:#333333;
 }
 *{box-sizing:border-box}
-body{font-family:Segoe UI, Roboto, Arial, sans-serif;background:var(--bg);margin:0;padding:40px;display:flex;align-items:center;justify-content:center;min-height:100vh}
-.container{width:100%;max-width:600px;background:var(--card);padding:24px;border-radius:10px;box-shadow:0 6px 18px rgba(20,30,50,0.08)}
-h1{margin:0 0 16px;font-size:20px;color:#162029}
-.input-section{margin-bottom:16px}
-.input-group{display:flex;gap:8px;margin-bottom:12px}
-#taskInput{flex:1;padding:10px 12px;border:1px solid #e3e8ef;border-radius:8px;font-size:14px}
-#addBtn{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600}
-#addBtn:hover{opacity:0.95}
-.date-time-group{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:#162029}
-.date-time-group label{display:flex;align-items:center}
-.date-time-group input{width:140px;padding:6px 8px;border:1px solid #e3e8ef;border-radius:6px;font-size:13px}
+body{font-family:'Segoe UI', Roboto, Arial, sans-serif;background:var(--bg);margin:0;padding:20px;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.container{width:100%;max-width:550px;background:var(--bg);padding:0}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+h1{margin:0;font-size:24px;color:var(--text);letter-spacing:-0.5px}
+.clear-all-btn{background:transparent;color:var(--muted);border:1px solid var(--border);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:12px;transition:all 0.2s}
+.clear-all-btn:hover{color:var(--text);border-color:var(--text)}
+.input-section{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.input-group{display:flex;gap:10px;margin-bottom:14px}
+#taskInput{flex:1;padding:12px 14px;background:#1a1a1a;border:1px solid var(--border);border-radius:6px;font-size:14px;color:var(--text);outline:none}
+#taskInput:focus{border-color:var(--accent)}
+#taskInput::placeholder{color:var(--muted)}
+#addBtn{background:var(--accent);color:#000;border:none;padding:12px 18px;border-radius:6px;cursor:pointer;font-weight:600;font-size:14px;transition:opacity 0.2s}
+#addBtn:hover{opacity:0.9}
+.date-time-group{display:flex;gap:12px;flex-wrap:wrap}
+.date-time-group input{flex:1;min-width:140px;padding:8px 10px;background:#1a1a1a;border:1px solid var(--border);border-radius:6px;font-size:13px;color:var(--text);outline:none}
+.date-time-group input:focus{border-color:var(--accent)}
 #taskList{list-style:none;padding:0;margin:0}
-.task{display:flex;align-items:flex-start;justify-content:space-between;padding:12px;border-radius:8px;border:1px solid #f0f3f7;margin-bottom:10px;background:#fafbfc;gap:12px}
-.task-left{display:flex;align-items:flex-start;gap:10px;flex:1}
+.task{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);gap:14px;transition:opacity 0.3s}
+.task-left{display:flex;align-items:flex-start;gap:12px;flex:1}
 .task-content{flex:1}
-.task-text{font-size:14px;color:#162029;font-weight:500;margin:0 0 4px}
+.task-text{font-size:15px;color:var(--text);font-weight:400;margin:0 0 8px;line-height:1.4}
 .task.completed .task-text{color:var(--muted);text-decoration:line-through}
-.task-meta{font-size:12px;color:var(--muted);margin:2px 0}
-.task-meta strong{color:#162029}
-.task-buttons{display:flex;gap:6px}
-.delete-btn{background:#ff6b6b;border:none;color:#fff;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
-.delete-btn:hover{opacity:0.95}
-.checkbox{width:18px;height:18px;margin-top:2px}
-.empty{color:var(--muted);text-align:center;padding:12px;font-size:14px}
+.task-meta{font-size:12px;color:var(--muted);margin:0;line-height:1.4}
+.task-buttons{display:flex;gap:8px}
+.delete-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:4px;cursor:pointer;font-size:11px;transition:all 0.2s}
+.delete-btn:hover{color:var(--text);border-color:var(--text)}
+.checkbox{width:18px;height:18px;margin-top:2px;cursor:pointer;accent-color:var(--accent)}
+.empty{color:var(--muted);text-align:center;padding:40px 20px;font-size:14px}
+.encouragement{position:fixed;top:20px;right:20px;background:var(--accent);color:#000;padding:12px 16px;border-radius:6px;font-size:14px;font-weight:600;animation:slideIn 0.3s ease-out;z-index:1000}
+@keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}

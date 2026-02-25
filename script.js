@@ -2,7 +2,21 @@ const taskInput = document.getElementById('taskInput');
 const dueDate = document.getElementById('dueDate');
 const dueTime = document.getElementById('dueTime');
 const addBtn = document.getElementById('addBtn');
+const clearAllBtn = document.getElementById('clearAllBtn');
 const taskList = document.getElementById('taskList');
+
+const encouragements = [
+  '🎉 Awesome!',
+  '✨ Great job!',
+  '💪 You got this!',
+  '🚀 Keep it up!',
+  '⭐ Excellent!',
+  '🎯 On track!',
+  '👏 Well done!',
+  '🏆 Champion!',
+  '💯 Perfect!',
+  '🌟 Fantastic!'
+];
 
 addBtn.addEventListener('click', () => {
   const text = taskInput.value.trim();
@@ -15,6 +29,27 @@ taskInput.addEventListener('keyup', (e) => {
     if (text) addTask(text);
   }
 });
+
+clearAllBtn.addEventListener('click', () => {
+  if (taskList.children.length > 0 && !taskList.children[0].classList.contains('empty')) {
+    if (confirm('Clear all tasks?')) {
+      taskList.innerHTML = '';
+      checkEmpty();
+    }
+  }
+});
+
+function showEncouragement() {
+  const msg = encouragements[Math.floor(Math.random() * encouragements.length)];
+  const div = document.createElement('div');
+  div.className = 'encouragement';
+  div.textContent = msg;
+  document.body.appendChild(div);
+  setTimeout(() => {
+    div.style.animation = 'fadeOut 0.3s ease-out';
+    setTimeout(() => div.remove(), 300);
+  }, 2000);
+}
 
 function formatDate(dateString) {
   const date = new Date(dateString + 'T00:00:00');
@@ -97,8 +132,12 @@ function addTask(text) {
   taskInput.focus();
 
   checkbox.addEventListener('change', () => {
-    if (checkbox.checked) li.classList.add('completed');
-    else li.classList.remove('completed');
+    if (checkbox.checked) {
+      li.classList.add('completed');
+      showEncouragement();
+    } else {
+      li.classList.remove('completed');
+    }
   });
 
   del.addEventListener('click', () => {
